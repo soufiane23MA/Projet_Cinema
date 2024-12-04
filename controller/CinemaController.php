@@ -53,10 +53,10 @@ class CinemaController {
 			require "view/listGenres.php";
 	}
 	public function detailFilm($id){
-		$pdo = connect::seConnecter();
+		$pdo = connect::seConnecter();//  
 		// infos du film
 		$requete = $pdo->prepare("SELECT titre,annee_Sortie,note,synopsis,
-		CONCAT(p.nom_Personne,'',p.prenom_Personne) AS 'Realisateur'FROM film f 
+		CONCAT(p.nom_Personne,' ',p.prenom_Personne) AS 'Realisateur'FROM film f 
 		INNER JOIN realisateur r ON f.id_Realisateur=r.id_Realisateur
 		INNER JOIN personne p ON r.id_Personne = p.id_Personne 
 		WHERE id_Filme =:id");
@@ -74,6 +74,28 @@ class CinemaController {
 				$castingDetail = $casting -> fetchAll();
 
 		require "view/detailFilm.php";
+	}
+	public function detailActeur($id){
+		$pdo = connect::seConnecter();
+		// info Acteur
+		$requete = $pdo->prepare(" SELECT p.nom_Personne,p.prenom_Personne,
+		DATE_FORMAT(p.date_Naissance, '%d/%m/%Y') AS date_Naissance,sex_Personne 
+		FROM personne p
+ INNER JOIN acteur a ON p.id_Personne = a.id_Personne
+ WHERE a.id_Acteur = :id");
+ $requete->execute(["id" => $id]);
+ $acteur= $requete->fetch();
+ 
+ //2e requette
+
+ $castingDetail = $pdo->prepare("SELECT titre,annee_Sortie,nom_Role FROM film f
+INNER JOIN jouer j ON j.id_Filme=f.id_Filme
+INNER JOIN role r ON r.id_Role = j.id_Role
+WHERE j.id_Acteur = :id");
+$castingDetail ->execute(["id"=>$id]);
+$castingActeurDetail = $castingDetail->fetchAll();
+require "view/detailActeur.php";
+
 	}
 
 

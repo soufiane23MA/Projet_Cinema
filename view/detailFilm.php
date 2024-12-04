@@ -8,19 +8,20 @@
 	<li>Synopsis :<?= $film["synopsis"] ?> </li>
 	<li>Réalisateur : <?= $film["Realisateur"] ?></li>
 </ul>
-<!--<p>Synopsis :</p>
-<p>Note :</p>
-<p>Annee de sorire :</p>
-<p> Réalisateur : </p>-->
+ 
 
  <p>Casting</p>
- <table>
+ <table style=" width: 50%;
+    border-collapse: collapse" >
 		<thead>
-			<tr>
+			<tr style ='width: 50%;
+    border-collapse: collapse'>
 			 
-				<th>Acteur</th>
+				<th style=' width: 50%;
+    border-collapse: collapse'>Acteur</th>
 				<th> </th>
-				<th>Rôle</th>
+				<th style=' width: 50%;
+    border-collapse: collapse'>Rôle</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,9 +29,13 @@
 			foreach($castingDetail as $cast){?>
 				<tr>
 				 
-				<td><?= $cast["Acteur"]?></td>
-				<td> </td>
-				<td><?= $cast["Role"]?></td>
+				<td style=' width: 50%;
+    border-collapse: collapse'><?= $cast["Acteur"]?></td>
+				<td style=' width: 50%;
+    border-collapse: collapse'> </td>
+		<td> </td>
+				<td style=' width: 50%;
+    border-collapse: collapse'><?= $cast["Role"]?></td>
 			</tr>
 			
 
