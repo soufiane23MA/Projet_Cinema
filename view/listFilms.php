@@ -14,7 +14,7 @@
 					foreach($films as $film) {?>
 					<tr>
 						<td><?=$film["id_Filme"]?></td>
-						<td><?=$film["titre"]?></td>
+						<td><a href="index.php?action=detailFilm&id=<?= $film["id_Filme"] ?>"><?=$film["titre"]?></a></td>
 						<td><?=$film["annee_Sortie"]?></td>
 					</tr>
 					<?php } ?>

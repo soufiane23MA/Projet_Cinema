@@ -12,9 +12,8 @@ namespace Model;
  * qui seront utilisées par d'autres classes.
  * Pourquoi utiliser cette structure ?
  * Réutilisation : D'autres classes ou scripts peuvent utiliser ces constantes
- *    pour établir une connexion à la base de données sans avoir à redéfinir 
- * les mêmes informations à chaque fois.Centralisation de la configuration : 
- *   Si tu veux changer le nom de la base de données, l'hôte, ou les identifiants, 
+ * pour établir une connexion à la base de données sans avoir à redéfinir les mêmes informations à chaque fois.
+ * Centralisation de la configuration : Si tu veux changer le nom de la base de données, l'hôte, ou les identifiants, 
  * tu n'as qu'à le faire une seule fois dans cette classe abstraite.
  * Contrôle : En faisant la classe abstraite, tu t'assures qu'aucune instance de la classe Connect ne peut être créée 
  * (car une classe abstraite ne peut pas être instanciée directement), mais tu peux la faire étendre pour l'utiliser.

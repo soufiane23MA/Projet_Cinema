@@ -1,6 +1,15 @@
 <?php
 
+ /**
+	* * Cela indique que la classe Connect, 
+ * utilisée pour se connecter à la base de données, est définie dans le namespace Model.
+ * Vous importez cette classe pour pouvoir l’utiliser ici.
+ * Ce fichier appartient au namespace Controller,
+ *  ce qui signifie quecette classe fait partie de la couche "Contrôleur"
+	*/
+
 namespace Controller;
+
 use Model\Connect;
 
 class CinemaController {
@@ -43,6 +52,30 @@ class CinemaController {
 		 $genres = $requete->fetchAll();
 			require "view/listGenres.php";
 	}
+	public function detailFilm($id){
+		$pdo = connect::seConnecter();
+		// infos du film
+		$requete = $pdo->prepare("SELECT titre,annee_Sortie,note,synopsis,
+		CONCAT(p.nom_Personne,'',p.prenom_Personne) AS 'Realisateur'FROM film f 
+		INNER JOIN realisateur r ON f.id_Realisateur=r.id_Realisateur
+		INNER JOIN personne p ON r.id_Personne = p.id_Personne 
+		WHERE id_Filme =:id");
+		$requete->execute(["id" => $id]);
+		$film = $requete->fetch();
+
+		// 2e requete : casting du film
+		$casting = $pdo->prepare("SELECT CONCAT(p.nom_Personne ,' ', p.prenom_Personne) AS 'Acteur', nom_Role AS 'Role' 
+				FROM personne p
+				INNER JOIN acteur a ON a.id_Personne = p.id_Personne
+				INNER JOIN jouer j ON j.id_Acteur= a.id_Acteur
+				INNER JOIN role r ON r.id_Role = j.id_Role
+				WHERE j.id_Filme = :id");
+				$casting -> execute (["id"=> $id]);
+				$castingDetail = $casting -> fetchAll();
+
+		require "view/detailFilm.php";
+	}
+
 
 
 }
