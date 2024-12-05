@@ -16,17 +16,17 @@ class CinemaController {
 
 	public function listFilms(){
 		$pdo = Connect::seConnecter();
-		$requete = $pdo->query("SELECT id_Filme,titre,annee_Sortie FROM film
-		ORDER BY annee_Sortie DESC");
+		$requete = $pdo->query("SELECT id_film,titre,annee_sortie FROM film
+		ORDER BY annee_sortie DESC");
 		$films = $requete->fetchAll();
 			require "view/listFilms.php";
 	}
 
 	public function listActeurs(){
 		$pdo = Connect::seConnecter();
-		$requete = $pdo->query( " SELECT  p.id_Personne,nom_Personne, prenom_Personne,DATE_FORMAT(p.date_Naissance, '%d/%m/%Y') AS date_Naissance, date_Naissance, sex_Personne FROM personne p
-		INNER JOIN Acteur a ON a.id_Personne = p.id_Personne
-		ORDER BY nom_Personne ASC");
+		$requete = $pdo->query( " SELECT  p.id_personne,nom_personne, prenom_personne,DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date_naissance, sex_personne FROM personne p
+		INNER JOIN Acteur a ON a.id_personne = p.id_personne
+		ORDER BY nom_personne ASC");
 		 $acteurs = $requete->fetchAll();
 			require "view/listActeurs.php";
 			 
@@ -35,11 +35,11 @@ class CinemaController {
 
 	public function listRealisateurs(){
 		$pdo = Connect::seConnecter();
-		$requete = $pdo->query("SELECT p.id_Personne, nom_Personne, prenom_Personne, 
-    DATE_FORMAT(p.date_Naissance, '%d/%m/%Y') AS date_Naissance, sex_Personne  
+		$requete = $pdo->query("SELECT p.id_personne, nom_personne, prenom_personne, 
+    DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date_naissance, sex_personne  
     FROM personne p
-    INNER JOIN realisateur r ON r.id_Personne = p.id_Personne
-		ORDER BY nom_Personne ASC  ");
+    INNER JOIN realisateur r ON r.id_personne = p.id_personne
+		ORDER BY nom_personne ASC  ");
 		 $realisateurs = $requete->fetchAll();
 			require "view/listRealisateurs.php";
 			 
@@ -47,7 +47,7 @@ class CinemaController {
 
 	public function listGenres(){
 		$pdo = Connect::seConnecter();
-		$requete = $pdo->query("SELECT  id_Genre, libelle FROM genre 
+		$requete = $pdo->query("SELECT  id_genre, libelle FROM genre 
 		ORDER BY  libelle ASC");
 		 $genres = $requete->fetchAll();
 			require "view/listGenres.php";
@@ -55,21 +55,21 @@ class CinemaController {
 	public function detailFilm($id){
 		$pdo = connect::seConnecter();//  
 		// infos du film
-		$requete = $pdo->prepare("SELECT titre,annee_Sortie,note,synopsis,
-		CONCAT(p.nom_Personne,' ',p.prenom_Personne) AS 'Realisateur'FROM film f 
-		INNER JOIN realisateur r ON f.id_Realisateur=r.id_Realisateur
-		INNER JOIN personne p ON r.id_Personne = p.id_Personne 
-		WHERE id_Filme =:id");
+		$requete = $pdo->prepare("SELECT titre,annee_sortie,note,synopsis,
+		CONCAT(p.nom_personne,' ',p.prenom_personne) AS 'Realisateur'FROM film f 
+		INNER JOIN realisateur r ON f.id_realisateur=r.id_realisateur
+		INNER JOIN personne p ON r.id_personne = p.id_personne 
+		WHERE id_film =:id");
 		$requete->execute(["id" => $id]);
 		$film = $requete->fetch();
 
 		// 2e requete : casting du film
-		$casting = $pdo->prepare("SELECT CONCAT(p.nom_Personne ,' ', p.prenom_Personne) AS 'Acteur', nom_Role AS 'Role' 
+		$casting = $pdo->prepare("SELECT CONCAT(p.nom_personne ,' ', p.prenom_personne) AS 'Acteur', nom_role AS 'Role' 
 				FROM personne p
-				INNER JOIN acteur a ON a.id_Personne = p.id_Personne
-				INNER JOIN jouer j ON j.id_Acteur= a.id_Acteur
-				INNER JOIN role r ON r.id_Role = j.id_Role
-				WHERE j.id_Filme = :id");
+				INNER JOIN acteur a ON a.id_personne = p.id_personne
+				INNER JOIN jouer j ON j.id_acteur= a.id_acteur
+				INNER JOIN role r ON r.id_role = j.id_role
+				WHERE j.id_film = :id");
 				$casting -> execute (["id"=> $id]);
 				$castingDetail = $casting -> fetchAll();
 
@@ -78,26 +78,62 @@ class CinemaController {
 	public function detailActeur($id){
 		$pdo = connect::seConnecter();
 		// info Acteur
-		$requete = $pdo->prepare(" SELECT p.nom_Personne,p.prenom_Personne,
-		DATE_FORMAT(p.date_Naissance, '%d/%m/%Y') AS date_Naissance,sex_Personne 
+		$requete = $pdo->prepare(" SELECT p.nom_personne,p.prenom_personne,
+		DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date_naissance,sex_personne 
 		FROM personne p
- INNER JOIN acteur a ON p.id_Personne = a.id_Personne
- WHERE a.id_Acteur = :id");
+ INNER JOIN acteur a ON p.id_personne = a.id_personne
+ WHERE a.id_acteur = :id");
  $requete->execute(["id" => $id]);
  $acteur= $requete->fetch();
  
  //2e requette
 
- $castingDetail = $pdo->prepare("SELECT titre,annee_Sortie,nom_Role FROM film f
-INNER JOIN jouer j ON j.id_Filme=f.id_Filme
-INNER JOIN role r ON r.id_Role = j.id_Role
-WHERE j.id_Acteur = :id");
+ $castingDetail = $pdo->prepare("SELECT titre,annee_sortie,nom_role FROM film f
+INNER JOIN jouer j ON j.id_film=f.id_film
+INNER JOIN role r ON r.id_role = j.id_role
+WHERE j.id_acteur = :id");
 $castingDetail ->execute(["id"=>$id]);
 $castingActeurDetail = $castingDetail->fetchAll();
 require "view/detailActeur.php";
 
+	}/**
+	 *  
+	 *mettre en place de la fonction pour rajouterun formulaire 
+	 *pour rajouter un filme ou un acteur
+	 *  
+	 */
+	public function addFilmFormulaire(){
+		require "view/addFilmFormulaire.php";
 	}
+	/**
+	 * 
+	 * fonction qui permet de rajouter un film,
+	 * @return void
+	 */
+	public function addFilm(){
+		// verification du data contenu dans $_POST,
+		//filtrer l'input pour sécuriser le contenu.
 
+		if($_POST['submit']){
+			  $film = filter_input( INPUT_POST, "titreFilm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$film = $_POST['titreFilm'];
+	
 
+			 $pdo = connect::seConnecter();
+			 $addFilm = $pdo->prepare("INSERT INTO film  (titre) Values (:name)");
+		 	$addFilm->execute(["name"=> $film]);
 
+		
+		 };
+		
+ }
+			
+		
 }
+	
+ 
+
+
+
+
+

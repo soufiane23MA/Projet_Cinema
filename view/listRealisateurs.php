@@ -15,11 +15,11 @@
 				<?php
 					foreach($realisateurs as $realisateur) {?>
 					<tr>
-						<td><?=$realisateur["id_Personne"] ?? 'N/A'?></td>
-						<td><?=$realisateur["nom_Personne"] ?? 'N/A'?></td>
-						<td><?=$realisateur["prenom_Personne"] ?? 'N/A'?></td>
-						<td><?=$realisateur["date_Naissance"] ?? 'N/A'?></td>
-						<td><?=$realisateur["sex_Personne"] ?? 'N/A'?></td>
+						<td><?=$realisateur["id_personne"] ?? 'N/A'?></td>
+						<td><?=$realisateur["nom_personne"] ?? 'N/A'?></td>
+						<td><?=$realisateur["prenom_personne"] ?? 'N/A'?></td>
+						<td><?=$realisateur["date_naissance"] ?? 'N/A'?></td>
+						<td><?=$realisateur["sex_personne"] ?? 'N/A'?></td>
 					</tr>
 					<?php } ?>
 		</tbody>

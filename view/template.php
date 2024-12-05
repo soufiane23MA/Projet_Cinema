@@ -15,7 +15,7 @@
 				<li><a href=" index.php?action=listRealisateurs">Réalisateurs</a></li>
 				<li><a href=" index.php?action=listRoles">Rôles</a></li>
 				<li><a href=" index.php?action=listGenres">Genres</a></li>
-				<li><a href="index.php?action=addCasting">Ajouter un film</a></li>
+				<li><a href="index.php?action=addFilmFormulaire">Ajouter un film</a></li>
 			</ul>
 		</nav>
 

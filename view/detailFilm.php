@@ -3,10 +3,10 @@
 
 <h1><?= $film["titre"] ?></h1>
 <ul>
-	<li>Annee de sorire : <?= $film["annee_Sortie"] ?></li>
+	<li>Annee de sorire : <?= $film["annee_sortie"] ?></li>
 	<li>Note : <?= $film["note"] ?></li>
 	<li>Synopsis :<?= $film["synopsis"] ?> </li>
-	<li>Réalisateur : <?= $film["Realisateur"] ?></li>
+	<li>Réalisateur : <?= $film["realisateur"] ?></li>
 </ul>
  
 

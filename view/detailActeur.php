@@ -1,11 +1,11 @@
 <?php ob_start();
 ?>
 
-<h1><?= $acteur["nom_Personne"] ?> <?= $acteur["prenom_Personne"] ?></h1>
+<h1><?= $acteur["nom_personne"] ?> <?= $acteur["prenom_personne"] ?></h1>
 <ul>
 	 
-	<li>Date de Naissance: <?= $acteur["date_Naissance"] ?></li>
-	<li>Sex :<?= $acteur["sex_Personne"] ?> </li>
+	<li>Date de Naissance: <?= $acteur["date_naissance"] ?></li>
+	<li>Sex :<?= $acteur["sex_personne"] ?> </li>
 	 
 </ul>
 
@@ -30,8 +30,8 @@
 				<tr>
 				 
 				<td><?= $cast["titre"]?></td>
-				<td><?= $cast["annee_Sortie"]?></td>
-				<td><?= $cast["nom_Role"]?></td>
+				<td><?= $cast["annee_sortie"]?></td>
+				<td><?= $cast["nom_role"]?></td>
 			</tr>
 			
 

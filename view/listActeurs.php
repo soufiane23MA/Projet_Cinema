@@ -14,11 +14,11 @@
 	<tbody>
     <?php foreach ($acteurs as $acteur) { ?>
         <tr>
-            <td><?= $acteur["id_Personne"] ?? 'N/A' ?></td>
-						<td><a href="index.php?action=detailActeur&id=<?= $acteur["id_Personne"] ?> "><?= $acteur["nom_Personne"] ?? 'N/A' ?></a></td>
-            <td><?= $acteur["prenom_Personne"] ?? 'N/A' ?></td>
-            <td><?= $acteur["date_Naissance"] ?? 'N/A' ?></td>
-            <td><?= $acteur["sex_Personne"] ?? 'N/A' ?></td>
+            <td><?= $acteur["id_personne"] ?? 'N/A' ?></td>
+						<td><a href="index.php?action=detailActeur&id=<?= $acteur["id_personne"] ?> "><?= $acteur["nom_personne"] ?? 'N/A' ?></a></td>
+            <td><?= $acteur["prenom_personne"] ?? 'N/A' ?></td>
+            <td><?= $acteur["date_naissance"] ?? 'N/A' ?></td>
+            <td><?= $acteur["sex_personne"] ?? 'N/A' ?></td>
         </tr>
     <?php } ?>
 </tbody>

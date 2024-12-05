@@ -12,7 +12,7 @@
 			<?php
 				foreach($genres as $genre) {?>
 			<tr>
-					<th><?=$genre["id_Genre"]?></th>
+					<th><?=$genre["id_genre"]?></th>
 					<td><?=$genre["libelle"]?></td>
 				 
 			</tr>

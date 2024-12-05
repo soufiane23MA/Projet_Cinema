@@ -32,20 +32,27 @@ if(isset($_GET["action"])){
 		case"listFilms" : $ctrlCinema->listFilms();
 		break;
 		case"listActeurs" : 
-			$ctrlCinema->listActeurs();
-			break;
+		$ctrlCinema->listActeurs();
+		break;
 		case"listRealisateurs" :
-			 $ctrlCinema->listRealisateurs();
-			 break;
+			$ctrlCinema->listRealisateurs();
+		break;
 		case "listGenres":
-			 $ctrlCinema ->listGenres();
+			$ctrlCinema ->listGenres();
 		break;
 		case "detailFilm" :
-			 $ctrlCinema->detailFilm($id);
+			$ctrlCinema->detailFilm($id);
 		break;
 		case "detailActeur" :
 			$ctrlCinema->detailActeur($id);
-			break;
+		break;
+		case "addFilmFormulaire":
+				$ctrlCinema->addFilmFormulaire();
+		break ;
+		case "addFilm":
+			$ctrlCinema->addFilm();
+		break;
+			
 }
 
 }
