@@ -103,6 +103,10 @@ require "view/detailActeur.php";
 	 *  
 	 */
 	public function addFilmFormulaire(){
+
+		// demander à la couche modele la liste des realisateurs pour l'afficher dans un select dans le form
+		// meme chose les genres (ne pas oublier qu'il peut en avoir plusieurs)
+		
 		require "view/addFilmFormulaire.php";
 	}
 	/**
@@ -115,13 +119,23 @@ require "view/detailActeur.php";
 		//filtrer l'input pour sécuriser le contenu.
 
 		if($_POST['submit']){
-			  $film = filter_input( INPUT_POST, "titreFilm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$film = filter_input( INPUT_POST, "titreFilm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$film = $_POST['titreFilm'];
-	
-
-			 $pdo = connect::seConnecter();
-			 $addFilm = $pdo->prepare("INSERT INTO film  (titre) Values (:name)");
-		 	$addFilm->execute(["name"=> $film]);
+			$synopsis = filter_input(INPUT_POST,"synopsis",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$synopsis = $_POST["synopsis"];
+			$note = filter_input(INPUT_POST,"note",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$note = $_POST["note"];
+			$anneeSortie = filter_input(INPUT_POST,"anneeSortie",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$anneeSortie= $_POST["anneeSortie"];
+			$pdo = connect::seConnecter();
+			/**
+			 * attention il faut rajouter tous les input dans la même fonction du rajout du film
+			 * il faut verifier que la requête fonctionne dans la base de donnéés avant 
+			 */
+			  
+			$addFilm = $pdo->prepare("INSERT INTO film  (titre,synopsis,note,annee_sortie) Values (:name,:synopsis,:note,:anneeSortie)");
+			$addFilm->execute(["name"=> $film,"synopsis"=> $synopsis,"note"=>$note,"anneeSortie"=>$anneeSortie]);
+			
 
 		
 		 };
