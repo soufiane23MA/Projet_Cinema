@@ -52,6 +52,12 @@ if(isset($_GET["action"])){
 		case "addFilm":
 			$ctrlCinema->addFilm();
 		break;
+		case "addGenre":
+			$ctrlCinema->addGenre();
+		break;
+		case "deleteGenre":// créer le lien qui derige l'
+			$ctrlCinema->deleteGenre($id);
+		break;
 		 
 			
 }

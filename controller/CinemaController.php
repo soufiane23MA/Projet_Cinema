@@ -56,7 +56,7 @@ class CinemaController {
 		$pdo = connect::seConnecter();//  
 		// infos du film
 		$requete = $pdo->prepare("SELECT titre,annee_sortie,note,synopsis,
-		CONCAT(p.nom_personne,' ',p.prenom_personne) AS 'Realisateur'FROM film f 
+		CONCAT(p.nom_personne,' ',p.prenom_personne) AS 'realisateur'FROM film f 
 		INNER JOIN realisateur r ON f.id_realisateur=r.id_realisateur
 		INNER JOIN personne p ON r.id_personne = p.id_personne 
 		WHERE id_film =:id");
@@ -81,14 +81,14 @@ class CinemaController {
 		$requete = $pdo->prepare(" SELECT p.nom_personne,p.prenom_personne,
 		DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date_naissance,sex_personne 
 		FROM personne p
- INNER JOIN acteur a ON p.id_personne = a.id_personne
- WHERE a.id_acteur = :id");
- $requete->execute(["id" => $id]);
- $acteur= $requete->fetch();
- 
+		INNER JOIN acteur a ON p.id_personne = a.id_personne
+		WHERE a.id_acteur = :id");
+		$requete->execute(["id" => $id]);
+		$acteur= $requete->fetch();
+
  //2e requette
 
- $castingDetail = $pdo->prepare("SELECT titre,annee_sortie,nom_role FROM film f
+$castingDetail = $pdo->prepare("SELECT titre,annee_sortie,nom_role FROM film f
 INNER JOIN jouer j ON j.id_film=f.id_film
 INNER JOIN role r ON r.id_role = j.id_role
 WHERE j.id_acteur = :id");
@@ -96,54 +96,116 @@ $castingDetail ->execute(["id"=>$id]);
 $castingActeurDetail = $castingDetail->fetchAll();
 require "view/detailActeur.php";
 
-	}/**
-	 *  
-	 *mettre en place de la fonction pour rajouterun formulaire 
-	 *pour rajouter un filme ou un acteur
-	 *  
-	 */
-	public function addFilmFormulaire(){
+}
+/**
+*  
+*mettre en place de la fonction pour rajouterun formulaire 
+*pour rajouter un filme ou un acteur
+*  
+*/
+public function addFilmFormulaire(){
 
-		// demander à la couche modele la liste des realisateurs pour l'afficher dans un select dans le form
-		// meme chose les genres (ne pas oublier qu'il peut en avoir plusieurs)
-		
-		require "view/addFilmFormulaire.php";
-	}
-	/**
+// demander à la couche modele la liste des realisateurs pour l'afficher dans un select dans le form
+// meme chose les genres (ne pas oublier qu'il peut en avoir plusieurs)
+
+require "view/addFilmFormulaire.php";
+}
+/**
 	 * 
 	 * fonction qui permet de rajouter un film,
 	 * @return void
 	 */
 	public function addFilm(){
-		// verification du data contenu dans $_POST,
-		//filtrer l'input pour sécuriser le contenu.
+// verification du data contenu dans $_POST,
+//filtrer l'input pour sécuriser le contenu.
 
-		if($_POST['submit']){
-			$film = filter_input( INPUT_POST, "titreFilm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-			$film = $_POST['titreFilm'];
-			$synopsis = filter_input(INPUT_POST,"synopsis",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-			$synopsis = $_POST["synopsis"];
-			$note = filter_input(INPUT_POST,"note",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-			$note = $_POST["note"];
-			$anneeSortie = filter_input(INPUT_POST,"anneeSortie",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-			$anneeSortie= $_POST["anneeSortie"];
-			$pdo = connect::seConnecter();
-			/**
-			 * attention il faut rajouter tous les input dans la même fonction du rajout du film
-			 * il faut verifier que la requête fonctionne dans la base de donnéés avant 
-			 */
-			  
-			$addFilm = $pdo->prepare("INSERT INTO film  (titre,synopsis,note,annee_sortie) Values (:name,:synopsis,:note,:anneeSortie)");
-			$addFilm->execute(["name"=> $film,"synopsis"=> $synopsis,"note"=>$note,"anneeSortie"=>$anneeSortie]);
-			
+if($_POST["submit"]){
+	$film = filter_input( INPUT_POST, "titreFilm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$film = $_POST['titreFilm'];
+	$synopsis = filter_input(INPUT_POST,"synopsis",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$synopsis = $_POST["synopsis"];
+	$note = filter_input(INPUT_POST,"note",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$note = $_POST["note"];
+	$anneesortie = $_POST["annee_sortie"];
+	$anneesortie = filter_input(INPUT_POST,"annee_sortie",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$dureeFilm = $_POST["duree_film"];
+	$dureeFilm = filter_input(INPUT_POST,"duree_film",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$realisateur = $_POST["id_realisateur"];
+	$realisateur = filter_input(INPUT_POST,"id_realisateur",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		
+	$pdo = connect::seConnecter();
 
+	/**
+	 * attention il faut rajouter tous les input dans la même fonction du rajout du film
+	 * il faut verifier que la requête fonctionne dans la base de donnéés avant  de l'appliquer pour
+	 * l'affichage.
+	 */
 		
-		 };
+	$addFilm = $pdo->prepare("INSERT INTO film  (titre,synopsis,note,annee_sortie,duree_film,id_realisateur) Values
+		(:name,:synopsis,:note,:annee_sortie,:duree_film,:id_realisateur)");
+	$addFilm->execute(["name"=> $film,"synopsis"=> $synopsis,"note"=>$note,"annee_sortie"=>$anneesortie,"duree_film"=>$dureeFilm,"id_realisateur"=>$realisateur]);
+	
+
+	};
 		
- }
-			
-		
+ } 
+
+/*public function addGenre()
+{
+if ($_POST["submit"]){ 
+$genre = filter_input(INPUT_POST,"libelle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$genre = $_POST["libelle"];
+
+$pdo = connect::seConnecter();
+
+$addgenre =$pdo->prepare("INSERT INTO genre (libelle) VALUES (:libelle)");
+$addgenre ->execute(["libelle"=> $genre]);
+var_dump($genre);
+
+
 }
+
+	  }*/
+		public function addGenre() {
+	if (isset($_POST['submit'])) {
+			// Get the genre name from the form input
+			$genre = filter_input(INPUT_POST, "libelle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+			// Connect to the database
+			$pdo = Connect::seConnecter();
+
+			// Insert the new genre into the database
+			$addGenre = $pdo->prepare("INSERT INTO genre (libelle) VALUES (:libelle)");
+			$addGenre->execute(['libelle' => $genre]);
+
+			// Optional: Redirect or give feedback to the user
+			header("Location: index.php?action=listGenres");  // Redirect to the genre list page
+			exit;
+	}
+
+	// Render the add genre form
+	require "view/addGenreForm.php";
+	}
+	public function deleteGenre($id) {
+    // Connexion à la base de données
+    $pdo = Connect::seConnecter();
+    
+    // Supprimer le genre de la base de données
+    $deleteGenre = $pdo->prepare("DELETE FROM genre WHERE id_genre = :id");
+    $deleteGenre->execute(['id' => $id]);
+    
+    // Rediriger vers la liste des genres après suppression
+    header("Location: index.php?action=listGenres");
+    exit;
+}
+
+
+	}
+		
+ 
+			
+		
+
 	
  
 
