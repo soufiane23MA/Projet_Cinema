@@ -9,11 +9,11 @@
 	<header>
 	<nav>
 			<ul>
-				<li><a href=" index.php?action=home">Home</a></li>
+				<!--<li><a href=" index.php?action=template">Home</a></li>-->
 				<li><a href=" index.php?action=listFilms">Films</a></li>
 				<li><a href=" index.php?action=listActeurs">Acteurs</a></li>
 				<li><a href=" index.php?action=listRealisateurs">Réalisateurs</a></li>
-				<li><a href=" index.php?action=listRoles">Rôles</a></li>
+				<!--<li><a href=" index.php?action=listRoles">Rôles</a></li>-->
 				<li><a href=" index.php?action=listGenres">Genres</a></li>
 				<li><a href="index.php?action=addFilmFormulaire">Ajouter un film</a></li>
 			</ul>

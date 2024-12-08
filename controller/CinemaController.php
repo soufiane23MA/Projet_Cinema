@@ -166,6 +166,10 @@ var_dump($genre);
 }
 
 	  }*/
+		/**
+		 * fonction pour rajouter un genre de film
+		 * @return void
+		 */
 		public function addGenre() {
 	if (isset($_POST['submit'])) {
 			// Get the genre name from the form input
@@ -174,23 +178,26 @@ var_dump($genre);
 			// Connect to the database
 			$pdo = Connect::seConnecter();
 
-			// Insert the new genre into the database
+			// Insert du nouveau genre dans la base de donnée en utilisant (insert into) 
 			$addGenre = $pdo->prepare("INSERT INTO genre (libelle) VALUES (:libelle)");
 			$addGenre->execute(['libelle' => $genre]);
 
-			// Optional: Redirect or give feedback to the user
-			header("Location: index.php?action=listGenres");  // Redirect to the genre list page
-			exit;
-	}
-
-	// Render the add genre form
-	require "view/addGenreForm.php";
-	}
-	public function deleteGenre($id) {
+			// pour informer l'utilisateur que l'action est bien enregistrer ; on peux le rediriger
+			//vers la liste des genre, avec ce code 
+			//header("Location: index.php?action=listGenres");   
+			//exit;
+	};
+}
+	 /**
+		* fonction de suppretion d'un genre de film
+		* @param mixed $id
+		* @return never
+		*/
+	 public function deleteGenre($id) {
     // Connexion à la base de données
     $pdo = Connect::seConnecter();
     
-    // Supprimer le genre de la base de données
+    // Supprimer le genre de la base de données avec la requête (delete)
     $deleteGenre = $pdo->prepare("DELETE FROM genre WHERE id_genre = :id");
     $deleteGenre->execute(['id' => $id]);
     
@@ -200,7 +207,8 @@ var_dump($genre);
 }
 
 
-	}
+	};
+
 		
  
 			

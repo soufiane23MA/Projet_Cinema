@@ -24,10 +24,10 @@
 
 
 <form action="index.php?action=addGenre" method="post">
-    <label for="libelle">Genre Name:</label>
-    <input type="text" name="libelle" id="libelle" required>
+    <label for="libelle" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;">Ajouter un Genre:</label>
+    <input type="text" name="libelle" id="libelle" required style="width: 30%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
     <br><br>
-    <input type="submit" name="submit" value="Add Genre">
+    <input type="submit" name="submit" value="Ajouter">
 </form>
 
 
