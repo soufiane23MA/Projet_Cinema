@@ -10,22 +10,22 @@
 </ul>
  
 
-<p><strong style="font-size: 1.5rem; color: #800C2A;">Casting</strong></p>
+<p><strong>Casting</strong></p>
 
 
- <table style="width: 100%; border-collapse: collapse; margin-top: 10px;" >
+ <table >
 		<thead>
-			<tr style="background-color: #800C2A; color: #fff;">
-				<th style="padding: 8px 12px; text-align: left; font-size: 1.2rem;">Acteur</th>
-				<th style="padding: 8px 12px; text-align: left; font-size: 1.2rem;">Rôle</th>
+			<tr>
+				<th>Acteur</th>
+				<th>Rôle</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 			foreach($castingDetail as $cast){?>
-			<tr style="border-bottom: 1px solid #ddd;">
-				<td style="padding: 8px 12px;"><?= $cast["Acteur"]?></td>
-				<td style="padding: 8px 12px;"><?= $cast["Role"]?></td>
+			<tr>
+				<td><?= $cast["Acteur"]?></td>
+				<td><?= $cast["Role"]?></td>
 			</tr>
 			
 

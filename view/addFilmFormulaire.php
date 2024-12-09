@@ -3,25 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="public/css/style.css">
 	<title>formulaire</title>
 </head>
 <body>
+
 <form action="index.php?action=addFilm" method="post" >
-    <label for="titreFilm" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;">Titre du Film :</label>
-    <input type="texte" name="titreFilm" id="titreFilm"  style="width: 30%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;"required>
+    <label for="titreFilm"  >Titre du Film :</label>
+    <input type="texte" name="titreFilm" id="titreFilm"   required>
 		<br><br>
-		<label for="synopsis" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;"> Synopsis :</label>
-		<input type="textaria" name="synopsis" id="synopsis" style="width: 50%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;" >
+		<label for="synopsis"  > Synopsis :</label>
+		<input type="texte" name="synopsis" id="synopsis" >
 		<br><br>
-		<label for="note" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;">Note:</label>
-		<input type="number" name="note" id="note" style="width: 30%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+		<label for="note"  >Note:</label>
+		<input type="number" name="note" id="note">
 		<br><br>
-		<label for="annee_sortie" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;">Anner de Sortie:</label>
-		<input type="number" name="annee_sortie" id="annee_sortie" style="width: 30%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
-		<label for="duree_film" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;">Duree du film:</label>
-		<input type="number" name="duree_film" id="duree_film" style="width: 30%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
-		<label for="id_realisateur" style="font-weight: bold; display: block; margin-bottom: 8px; color: #555;">Realisateur:</label>
-		<input type="texte" name="id_realisateur" id="id_realisateur" style="width: 30% padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+		<label for="annee_sortie"  >Anner de Sortie:</label>
+		<input type="number" name="annee_sortie" id="annee_sortie">
+		<label for="duree_film"  >Duree du film:</label>
+		<input type="number" name="duree_film" id="duree_film"  >
+		<label for="id_realisateur"  >Realisateur:</label>
+		<input type="texte" name="id_realisateur" id="id_realisateur" >
     <input type="submit" name="submit" value="valider" v>
 </form>
 

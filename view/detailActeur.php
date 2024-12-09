@@ -11,24 +11,23 @@
 
 
 <p style="font-size: 1.5rem; color: #800C2A; font-weight: bold;">Filmographie</p>
- <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-		<thead style="background-color: #800C2A; color: #fff; text-align: left;">
-			<tr style ='width: 50%;
-    border-collapse: collapse'>
+ <table >
+		<thead>
+			<tr >
 			 
-				<th style="padding: 10px; font-size: 1.1rem;">Film</th>
-				<th style="padding: 10px; font-size: 1.1rem;"> Annee DE Sortie</th>
-				<th style="padding: 10px; font-size: 1.1rem;">Rôle</th>
+				<th >Film</th>
+				<th > Annee DE Sortie</th>
+				<th >Rôle</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 			foreach($castingActeurDetail as $cast){?>
-				<tr style="border-bottom: 1px solid #ddd; text-align: left;">
+				<tr >
 				 
-				<td style="padding: 10px; font-size: 1.1rem;"><?= $cast["titre"]?></td>
-				<td style="padding: 10px; font-size: 1.1rem;"><?= $cast["annee_sortie"]?></td>
-				<td style="padding: 10px; font-size: 1.1rem;"><?= $cast["nom_role"]?></td>
+				<td ><?= $cast["titre"]?></td>
+				<td ><?= $cast["annee_sortie"]?></td>
+				<td ><?= $cast["nom_role"]?></td>
 			</tr>
 			
 

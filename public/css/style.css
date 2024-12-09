@@ -1,0 +1,97 @@
+ 
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+ 
+thead {
+	background-color: #800C2A;
+	color: #fff;
+	text-align: left;
+}
+
+ 
+ thead tr {
+	border-bottom: 1px solid #ddd;
+}
+
+ 
+ thead th {
+	padding: 10px;
+	font-size: 1.1rem;
+}
+
+ 
+  tbody tr {
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+}
+
+ 
+tbody td {
+	padding: 10px;
+	font-size: 1.1rem;
+}
+
+ 
+  tbody td a {
+	color: inherit;
+	text-decoration: none;
+}
+
+  tbody td a:hover {
+	text-decoration: underline;
+}
+ /* Style général des formulaires */
+form {
+	background-color: #f4f4f4; /* Fond gris clair pour les formulaires */
+	padding: 20px; /* Espacement interne */
+	border-radius: 8px; /* Coins arrondis */
+	margin-bottom: 20px; /* Espacement entre les formulaires */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+	width: 80%; /* Largeur du formulaire */
+	margin: 0 auto; /* Centrage horizontal */
+}
+
+/* Style des labels */
+form label {
+	font-size: 1.1rem; /* Taille de la police du label */
+	color: #333; /* Couleur du texte */
+	margin-bottom: 5px; /* Espacement en dessous du label */
+	display: block; /* Assure que chaque label est sur sa propre ligne */
+}
+
+/* Style des champs de saisie (input) */
+form input[type="text"], form input[type="number"] {
+	width: 100%; /* Prend toute la largeur disponible */
+	padding: 10px; /* Espacement interne */
+	font-size: 1rem; /* Taille de la police */
+	border: 1px solid #ccc; /* Bordure grise */
+	border-radius: 4px; /* Coins légèrement arrondis */
+	margin-bottom: 15px; /* Espacement entre les champs */
+}
+
+form input[type="text"]:focus, form input[type="number"]:focus {
+	border-color: #800C2A; /* Change la couleur de la bordure au focus */
+	outline: none; /* Enlève l'outline par défaut */
+}
+
+/* Style du bouton de soumission */
+form input[type="submit"] {
+	background-color: #800C2A; /* Couleur de fond du bouton */
+	color: white; /* Couleur du texte */
+	padding: 10px 20px; /* Espacement interne */
+	font-size: 1rem; /* Taille de la police */
+	border: none; /* Enlève la bordure */
+	border-radius: 4px; /* Coins arrondis */
+	cursor: pointer; /* Change le curseur pour indiquer un clic */
+	transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
+}
+
+form input[type="submit"]:hover {
+	background-color: #a31f44; /* Change la couleur du bouton au survol */
+}
+
+/* Style des sauts de ligne */
+form br {
+	margin-bottom: 10px; /* Espacement supplémentaire entre les sauts de ligne *
